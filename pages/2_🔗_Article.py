@@ -20,7 +20,7 @@ submit=st.button('Continue')
 if URL:
     
     try:
-        equest=requests.get(URL)
+        request=requests.get(URL)
         request=BeautifulSoup(request.text,'html.parser')
         request=request.find_all(['h1','p','li','h2'])
     except:
