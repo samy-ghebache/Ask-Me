@@ -78,7 +78,7 @@ if pdf:
             st.header(':blue[Context]')
             st.write(final[0])
         else:
-            st.write('The answer is not in the document ⚠️')
+            st.write('The answer is not in the document ⚠️, please reforumulate your question')
 
         
 
