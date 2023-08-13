@@ -10,7 +10,7 @@ import os
 
 hf_token = st.secrets['hf_token']
 
-LLM_api_key=os.st.secrets['LLM_api_key']
+LLM_api_key= st.secrets['LLM_api_key']
 
 st.title('Ask your ARTICLE 💬')
 
