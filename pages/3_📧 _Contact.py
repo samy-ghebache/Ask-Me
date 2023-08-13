@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 
 def load_css():
-    with open("C:\\Users\\MC09\\Downloads\\NLP\\pages\\style.css") as f:
+    with open("style.css") as f:
         st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
     st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">', unsafe_allow_html=True)
 
@@ -83,7 +83,7 @@ load_css()
 
 col1, col2, col3 = st.columns(3)
 
-col2.image(Image.open('C:\\Users\\MC09\\Downloads\\NLP\\pages\\intro.png').transpose(Image.ROTATE_90))
+col2.image(Image.open('intro.png').transpose(Image.ROTATE_90))
 
 st.markdown("<h1 style='text-align: center;font-weight:bold;'>Samy Ghebache</h1>", unsafe_allow_html=True)
 
