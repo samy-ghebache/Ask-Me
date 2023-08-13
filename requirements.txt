@@ -8,3 +8,4 @@ beautifulsoup4
 PyPDF2
 python-dotenv
 Pillow
+pathlib
