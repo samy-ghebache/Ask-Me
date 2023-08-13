@@ -1,7 +1,6 @@
 import torch
 import numpy as np
 from sentence_transformers import util
-import requests
 from langchain.text_splitter import CharacterTextSplitter
 from bs4 import BeautifulSoup
 import requests
