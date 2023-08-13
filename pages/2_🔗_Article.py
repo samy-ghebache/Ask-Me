@@ -49,7 +49,7 @@ if URL:
         
         try:
             
-            api_url = f"https://api-inference.huggingface.co/pipeline/feature-extraction/sentence-transformers/all-MiniLM-L6-v2"
+            api_url = st.secrets['hf_url']
         
             headers = {"Authorization": f"Bearer {hf_token}"}
     
@@ -69,7 +69,7 @@ if URL:
     
             final=[chunks[result[0][i]['corpus_id']] for i in range(len(result[0]))]
     
-            url = "https://api.ai21.com/studio/v1/answer"
+            url = st.secrets['LLM_url']
     
             payload = {
                 "context":' '.join(final),
