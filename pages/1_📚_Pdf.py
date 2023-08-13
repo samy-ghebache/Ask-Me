@@ -37,7 +37,7 @@ if pdf:
     if input:
         try:
             api_url = hf_url
-        
+            print(hf_url)
             headers = {"Authorization": f"Bearer {hf_token}"}
     
             def query(texts):
