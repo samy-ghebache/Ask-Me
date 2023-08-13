@@ -36,7 +36,7 @@ if pdf:
 
     if input:
         try:
-            api_url = hf_url
+            api_url = st.secrets['hf_url']
             st.write(api_url)
             headers = {"Authorization": f"Bearer {hf_token}"}
     
