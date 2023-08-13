@@ -49,7 +49,7 @@ if URL:
         
         try:
             
-            api_url = st.secrets['hf_url']
+            api_url = 'https://api-inference.huggingface.co/pipeline/feature-extraction/sentence-transformers/all-MiniLM-L6-v2'
         
             headers = {"Authorization": f"Bearer {hf_token}"}
     
