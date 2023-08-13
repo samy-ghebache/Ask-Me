@@ -3,8 +3,12 @@ from PIL import Image
 from pathlib import Path
 
 current_dir= Path(__file__).parent if '__file__' in locals() else Path.cwd()
+
 css_file= current_dir / 'style.css'
+
 img_file= current_dir / 'intro.png'
+
+pdf_file= current_dir / 'resume.pdf'
 
 def load_css():
     with open(css_file) as f:
@@ -90,6 +94,18 @@ col1, col2, col3 = st.columns(3)
 
 col2.image(Image.open(img_file).transpose(Image.ROTATE_90))
 
+with open(pdf_file, "rb") as pdf_file:
+    PDFbyte = pdf_file.read()
+
+with col2:
+    st.download_button(
+        label=" 📄 Download Resume",
+        data= PDFbyte,
+        file_name= pdf_file.name,
+        mime= "application/octet-stream",
+    )
+    st.write("📫", 'ks_ghebache@esi.dz')
+
 st.markdown("<h1 style='text-align: center;font-weight:bold;'>Samy Ghebache</h1>", unsafe_allow_html=True)
 
 st.info('I\'m a 4th-year Data Science student. I create customized AI services, design algorithms, and enjoy tackling challenges on LeetCode.')
@@ -98,5 +114,4 @@ icon_size = 20
 
 st_button('linkedin', 'https://www.linkedin.com/in/samy-ghebache-0232b0251/', 'Follow me on LinkedIn', icon_size)
 st_button('medium', 'https://medium.com/@ks_ghebache', 'Read my Blogs', icon_size)
-st_button('mail', 'mailto:ks_ghebache@esi.dz', 'Contact me', icon_size)
 
