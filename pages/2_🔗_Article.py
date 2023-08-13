@@ -82,5 +82,5 @@ if URL:
         if response.json()['answerInContext']:
             st.write(response.json()['answer'])
         else:
-            st.write('The answer is not in the document ⚠️')
+            st.write('The answer is not in the document ⚠️, please reforumulate your question')
 
