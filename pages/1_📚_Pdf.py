@@ -34,47 +34,51 @@ if pdf:
     
     submit=st.button('Submit')
 
-    if input or submit:    
-        api_url = f"https://api-inference.huggingface.co/pipeline/feature-extraction/sentence-transformers/all-MiniLM-L6-v2"
-    
-        headers = {"Authorization": f"Bearer {hf_token}"}
-
-        def query(texts):
-            response = requests.post(api_url, headers=headers, json={"inputs": texts, "options":{"wait_for_model":True}})
-            return response.json()
-
-        question = query([input])
+    if input:
+        try:
+            api_url = f"https://api-inference.huggingface.co/pipeline/feature-extraction/sentence-transformers/all-MiniLM-L6-v2"
         
-        query_embeddings = torch.FloatTensor(question)
-
-        output=query(chunks)
-
-        output=torch.from_numpy(np.array(output)).to(torch.float)
-
-        result=util.semantic_search(query_embeddings, output,top_k=2)
-
-        final=[chunks[result[0][i]['corpus_id']] for i in range(len(result[0]))]
-
-        url = "https://api.ai21.com/studio/v1/answer"
-
-        payload = {
-            "context":' '.join(final),
-            "question":input
-        }
-        headers = {
-            "accept": "application/json",
-            "content-type": "application/json",
-            "Authorization": f"Bearer {LLM_api_key}"
-        }
-
-        response = requests.post(url, json=payload, headers=headers)
-
-        if response.json()['answerInContext']:
-            st.write(response.json()['answer'])
-            st.header(':blue[Context]')
-            st.write(final[0])
-        else:
-            st.write('The answer is not in the document ⚠️, please reforumulate your question')
+            headers = {"Authorization": f"Bearer {hf_token}"}
+    
+            def query(texts):
+                response = requests.post(api_url, headers=headers, json={"inputs": texts, "options":{"wait_for_model":True}})
+                return response.json()
+    
+            question = query([input])
+            
+            query_embeddings = torch.FloatTensor(question)
+    
+            output=query(chunks)
+    
+            output=torch.from_numpy(np.array(output)).to(torch.float)
+    
+            result=util.semantic_search(query_embeddings, output,top_k=2)
+    
+            final=[chunks[result[0][i]['corpus_id']] for i in range(len(result[0]))]
+    
+            url = "https://api.ai21.com/studio/v1/answer"
+    
+            payload = {
+                "context":' '.join(final),
+                "question":input
+            }
+            headers = {
+                "accept": "application/json",
+                "content-type": "application/json",
+                "Authorization": f"Bearer {LLM_api_key}"
+            }
+    
+            response = requests.post(url, json=payload, headers=headers)
+    
+            if response.json()['answerInContext']:
+                st.write(response.json()['answer'])
+                st.header(':blue[Context]')
+                st.write(final[0])
+            else:
+                st.error('The answer is not in the document ⚠️, please reforumulate your question')
+        except:
+            st.error('The answer is not in the document ⚠️, please reforumulate your question')
+            
 
         
 
