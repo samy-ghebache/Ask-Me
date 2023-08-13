@@ -6,14 +6,11 @@ from bs4 import BeautifulSoup
 import requests
 from PyPDF2 import PdfReader
 import streamlit as st
-from dotenv import load_dotenv
 import os
 
-load_dotenv()
+hf_token = st.secrets['hf_token']
 
-hf_token = os.getenv('hf_token')
-
-LLM_api_key=os.getenv('LLM_api_key')
+LLM_api_key=os.st.secrets['LLM_api_key']
 
 st.title('Ask your ARTICLE 💬')
 
