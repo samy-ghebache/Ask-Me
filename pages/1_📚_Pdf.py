@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 import requests
 from PyPDF2 import PdfReader
 import streamlit as st
-import os
 
 hf_token = st.secrets['hf_token']
 
