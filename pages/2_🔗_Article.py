@@ -21,12 +21,13 @@ if URL:
     
     try:
         request=requests.get(URL)
-        request=BeautifulSoup(request.text,'html.parser')
-        request=request.find_all(['h1','p','li','h2'])
     except:
         st.error("Please enter a valid URL (including HTTP/HTTPS)")
         st.stop()
-        
+    
+    request=BeautifulSoup(request.text,'html.parser')
+    
+    request=request.find_all(['h1','p','li','h2'])
 
     result=[element.text for element in request]
 
